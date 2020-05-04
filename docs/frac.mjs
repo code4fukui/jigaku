@@ -9,11 +9,15 @@ const data = {
 
 const show = function () {
   const c = jigaku.createFullCanvas()
+  const demo = document.location.hash === '#demo'
 
   const color = [240, 191, 58]
   const bgcolor = [240, 240, 240]
 
   let parts = null
+
+  const numup = !demo
+  const offy = numup ? 0.05 : -0.05
 
   class Frac {
     constructor () {
@@ -25,7 +29,7 @@ const show = function () {
 
     setSize (w, h) {
       this.x = w / 2
-      this.y = h / 2 - h * 0.05
+      this.y = h / 2 + h * offy
       this.r = Math.min(w / 2, h * 0.8) / 2
     }
 
@@ -97,7 +101,7 @@ const show = function () {
     setSize (w, h) {
       this.sh = w / 15
       this.x = w - w / 8
-      this.y = h / 2 - h * 0.05
+      this.y = h / 2 + h * offy
     }
 
     isHit (x, y) {
@@ -126,26 +130,26 @@ const show = function () {
     btnup.setSize = function (w, h) {
       this.sh = w / 10
       this.x = w / 8
-      this.y = h / 2 - h * 0.05 - this.sh
+      this.y = h / 2 + h * offy - this.sh
     }
     const btnup2 = new TextButton('分母')
     btnup2.setSize = function (w, h) {
       this.sh = w / 20
       this.x = w / 8
-      this.y = h / 2 - h * 0.05
+      this.y = h / 2 + h * offy
     }
     parts.push(btnup2)
     const btndown = new TextButton('↓')
     btndown.setSize = function (w, h) {
       this.sh = w / 10
       this.x = w / 8
-      this.y = h / 2 - h * 0.05 + this.sh
+      this.y = h / 2 + h * offy + this.sh
     }
     const btnsp = new TextButton('通分する')
     btnsp.setSize = function (w, h) {
       this.sh = w / 25
       this.x = w - w / 8
-      this.y = h / 2 - h * 0.05 + this.sh * 3
+      this.y = h / 2 + h * offy + this.sh * 3
     }
     parts.push(fracnum)
     const num = new TextButton(1)
@@ -160,7 +164,7 @@ const show = function () {
       const r = Math.min(w / 2, h * 0.8) / 2
       this.sh = Math.min(h / 15, w / 15)
       this.x = w / 2
-      this.y = h / 2 - h * 0.05 + r + h * 0.025 + this.sh / 2
+      this.y = h / 2 + h * offy + (r + h * 0.025 + this.sh / 2) * (numup ? -1 : 1)
     }
     parts.push(num)
 
