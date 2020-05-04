@@ -105,8 +105,8 @@ const main = async function () {
     if (util.readFileSync('../docs/' + thumb) == null) {
       await cmd.cmd(`node ../../covid19/node/makeogp.mjs ${testbaseurl}${base}.html#demo ../docs/${thumb}`)
       await makeIconFromThumbnail('../docs/' + icon, '../docs/' + thumb, data.iconrect)
-      delete data.iconrect
     }
+    delete data.iconrect
   }
   list.sort(sortEducationMaterials)
   util.writeCSV('../docs/index', util.json2csv(list))

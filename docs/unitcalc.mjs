@@ -58,15 +58,15 @@ const UNITS = {
   },
   単位なし: {
     ' ': 1,
-    d: 10,
-    h: 100,
-    k: 1000,
-    M: 1000000,
-    G: 1000000000,
-    c: 0.1,
-    m: 0.001,
-    μ: 0.000001,
-    n: 0.000000001
+    'd(デシ)': 10,
+    'h(ヘクト)': 100,
+    'k(キロ)': 1000,
+    'M(メガ)': 1000000,
+    'G(ギガ)': 1000000000,
+    'c(センチ)': 0.1,
+    'm(ミリ)': 0.001,
+    'μ(マイクロ)': 0.000001,
+    'n(ナノ)': 0.000000001
   }
 }
 
@@ -217,14 +217,17 @@ const show = function () {
   const setUnit = function (unit) {
     for (const sel of [sel1, sel2]) {
       sel.innerHTML = ''
+      let maxlen = 0
       for (const name in unit) {
         const op = cr('option', sel)
         op.textContent = name
+        if (name.length > maxlen) { maxlen = name.length }
         op.value = unit[name]
       }
       if (sel === sel2) {
         sel.children[1].selected = true
       }
+      sel.style.fontSize = maxlen > 5 ? '1.7vw' : '3vw'
     }
     chg1()
   }
