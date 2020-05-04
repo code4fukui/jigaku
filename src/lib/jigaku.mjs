@@ -1,16 +1,19 @@
 const exports = {}
 
-exports.createFullCanvas = function () {
+exports.createFullElement = function (tag) {
   document.body.style.margin = '0'
   document.body.style.padding = '0'
-
-  const c = document.createElement('canvas')
+  const c = document.createElement(tag)
   document.body.style.overflow = 'hidden'
   c.style.margin = '0'
   c.style.padding = '0'
-  c.bkw = 0
-  c.bkh = 0
+  c.style.width = '100vw'
+  c.style.height = '100vh'
   document.body.appendChild(c)
+  return c
+}
+exports.createFullCanvas = function () {
+  const c = exports.createFullElement('canvas')
   c.g = c.getContext('2d')
 
   appendFunctions(c.g)

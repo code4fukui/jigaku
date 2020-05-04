@@ -3,14 +3,18 @@ import util from './util.mjs'
 import cmd from './cmd.mjs'
 import Jimp from 'jimp'
 
-const makeIconFromThumbnail = async function (dstfn, srcfn) { // right-top
+const makeIconFromThumbnail = async function (dstfn, srcfn, iconrect) { // right-top
+  if (!iconrect) {
+    iconrect = [922, 10, 256, 256]
+  }
   const iconw = 256
-  const offx = 922
-  const offy = 10
-  const capw = 256
+  const offx = iconrect[0]
+  const offy = iconrect[1]
+  const capw = iconrect[2]
+  const caph = iconrect[3]
 
   const png = await Jimp.read(srcfn)
-  png.crop(offx, offy, capw, capw)
+  png.crop(offx, offy, capw, caph)
   png.resize(iconw, iconw)
   await png.write(dstfn)
 }
@@ -100,7 +104,8 @@ const main = async function () {
 
     if (util.readFileSync('../docs/' + thumb) == null) {
       await cmd.cmd(`node ../../covid19/node/makeogp.mjs ${testbaseurl}${base}.html#demo ../docs/${thumb}`)
-      await makeIconFromThumbnail('../docs/' + icon, '../docs/' + thumb)
+      await makeIconFromThumbnail('../docs/' + icon, '../docs/' + thumb, data.iconrect)
+      delete data.iconrect
     }
   }
   list.sort(sortEducationMaterials)
