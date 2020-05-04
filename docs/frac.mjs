@@ -2,7 +2,7 @@ import jigaku from './lib/jigaku.mjs'
 
 const data = {
   タイトル: '分数表現 JIGAKU',
-  対象: '小学3年',
+  対象: '小学2年/小学3年/小学4年/小学5年/小学6年',
   科目: '算数',
   iconrect: [(1220 - 640) / 2, 0, 640, 640]
 }
