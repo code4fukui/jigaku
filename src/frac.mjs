@@ -154,7 +154,9 @@ const show = function () {
     parts.push(fracnum)
     const num = new TextButton(1)
     num.update = function () {
-      this.s = fracnum.numc + (this.flg ? ' / ' : ' ÷ ') + fracnum.numm + ' = ' + (fracnum.numc / fracnum.numm)
+      let n = (fracnum.numc / fracnum.numm).toString()
+      if (n.length > 17) { n = n.substring(0, 16) + '...' }
+      this.s = fracnum.numc + (this.flg ? ' / ' : ' ÷ ') + fracnum.numm + ' = ' + n
     }
     num.onTouch = function () {
       this.flg = !this.flg
