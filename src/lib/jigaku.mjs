@@ -110,6 +110,12 @@ const appendFunctions = function (g) {
       this.strokeStyle = r
       return
     }
+    if (Array.isArray(r)) {
+      a = r[3]
+      b = r[2]
+      g = r[1]
+      r = r[0]
+    }
     if (a == null) { a = 1 }
     var c = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'
     this.fillStyle = c
@@ -133,6 +139,20 @@ const appendFunctions = function (g) {
     this.arc(x, y, r, 0, Math.PI * 2, false)
     this.closePath()
     this.fill()
+  }
+  g.fillArc = function (x, y, r, srad, erad) {
+    this.beginPath()
+    this.arc(x, y, r, srad, erad, false)
+    this.lineTo(x, y)
+    this.closePath()
+    this.fill()
+  }
+  g.drawArc = function (x, y, r, srad, erad) {
+    this.beginPath()
+    this.arc(x, y, r, srad, erad, false)
+    this.lineTo(x, y)
+    this.closePath()
+    this.stroke()
   }
   // draw arrow
   g.drawArrow = function (x1, y1, x2, y2, arw, arh, fill) {

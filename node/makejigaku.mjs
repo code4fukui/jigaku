@@ -104,6 +104,8 @@ const main = async function () {
 
     if (util.readFileSync('../docs/' + thumb) == null) {
       await cmd.cmd(`node ../../covid19/node/makeogp.mjs ${testbaseurl}${base}.html#demo ../docs/${thumb}`)
+    }
+    if (util.readFileSync('../docs/' + icon) == null) {
       await makeIconFromThumbnail('../docs/' + icon, '../docs/' + thumb, data.iconrect)
     }
     delete data.iconrect
