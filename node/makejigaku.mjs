@@ -66,9 +66,9 @@ const main = async function () {
   const testbaseurl = 'http://localhost:8888/fukunojigjp/app/jigaku/docs/'
 
   const series = {
-    教材URL: 'https://code4sabae.github.io/jigaku/',
+    教材URL: 'https://code4fukui.github.io/jigaku/',
     提供: '福野泰介の一日一創',
-    提供URL: 'https://fukuno.jig.jp/',
+    提供URL: 'https://fukuno.jig.jp/jigaku',
     教材シリーズ名: '自学サポートアプリJIGAKU',
     ライセンス: 'https://creativecommons.org/licenses/by/4.0/'
   }
