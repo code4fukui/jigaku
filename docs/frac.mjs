@@ -145,7 +145,7 @@ const show = function () {
       this.x = w / 8
       this.y = h / 2 + h * offy + this.sh
     }
-    const btnsp = new TextButton('通分する')
+    const btnsp = new TextButton('約分する')
     btnsp.setSize = function (w, h) {
       this.sh = w / 25
       this.x = w - w / 8
