@@ -164,16 +164,27 @@ const show = async () => {
       }
       setSize (w, h) {
         super.setSize(w, h);
-        this.sh *= 3;
+        this.sh = w / 45;
       }
       onTouch (x, y) {
         this.s = this.s === "●" ? "○" : "●";
         psys.redraw();
         nbox2.s = balls.reduce((a, b) => a + (b.isFilled() ? 1 : 0), 0);
       }
+      isHit (x, y) {
+        const dx = x - this.x;
+        const dy = y - this.y;
+        return dx * dx + dy * dy < this.sh * this.sh;
+      }
       draw (g) {
         this.color = this.isFilled() ? this.fillcolor : this.drawcolor;
-        super.draw(g);
+        // super.draw(g);
+        g.setColor(this.color);
+        g.fillCircle(this.x, this.y, this.sh)
+        if (!this.isFilled()) {
+          g.setColor("white");
+          g.fillCircle(this.x, this.y, this.sh * 0.8);
+        }
       }
       isFilled () {
         return this.s === "●";
@@ -189,9 +200,9 @@ const show = async () => {
     }
     for (let i = 0; i < 10; i++) {
       if (i < n) {
-        psys.append(new FixFillPart(250 + i * 50, 500 - d - 20));
+        psys.append(new FixFillPart(250 + i * 50, 500 - d));
       }
-      balls.push(psys.append(new FillPart(250 + i * 50, 500 + d - 20)));
+      balls.push(psys.append(new FillPart(250 + i * 50, 500 + d)));
     }
 
     const chk = psys.append(new TextPart("こたえあわせ！", 700, 800));
