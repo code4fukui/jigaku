@@ -128,6 +128,24 @@ const appendFunctions = function (g) {
     this.closePath()
     this.stroke()
   }
+  g.drawRect = function (x, y, w, h) {
+    this.beginPath()
+    this.moveTo(x, y)
+    this.lineTo(x + w - 1, y)
+    this.lineTo(x + w - 1, y + h - 1)
+    this.lineTo(x, y + h - 1)
+    this.closePath()
+    this.stroke()
+  }
+  g.fillRect = function (x, y, w, h) {
+    this.beginPath()
+    this.moveTo(x, y)
+    this.lineTo(x + w - 1, y)
+    this.lineTo(x + w - 1, y + h - 1)
+    this.lineTo(x, y + h - 1)
+    this.closePath()
+    this.fill()
+  }
   g.drawCircle = function (x, y, r) {
     this.beginPath()
     this.arc(x, y, r, 0, Math.PI * 2, false)
@@ -140,19 +158,19 @@ const appendFunctions = function (g) {
     this.closePath()
     this.fill()
   }
-  g.fillArc = function (x, y, r, srad, erad) {
-    this.beginPath()
-    this.arc(x, y, r, srad, erad, false)
-    this.lineTo(x, y)
-    this.closePath()
-    this.fill()
-  }
   g.drawArc = function (x, y, r, srad, erad) {
     this.beginPath()
     this.arc(x, y, r, srad, erad, false)
     this.lineTo(x, y)
     this.closePath()
     this.stroke()
+  }
+  g.fillArc = function (x, y, r, srad, erad) {
+    this.beginPath()
+    this.arc(x, y, r, srad, erad, false)
+    this.lineTo(x, y)
+    this.closePath()
+    this.fill()
   }
   // draw arrow
   g.drawArrow = function (x1, y1, x2, y2, arw, arh, fill) {
