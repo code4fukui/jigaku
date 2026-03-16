@@ -11,4 +11,4 @@ A series of simple, free, ad-free self-learning support apps.
 - Educational materials provided in CSV, JSON, and HTML (Microdata) formats
 
 ## License
-The project is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license.
+MIT License — see [LICENSE](LICENSE).
